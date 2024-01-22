@@ -75,4 +75,4 @@ export const  NavbarLinks = [
   
     },
   ];
- export const BASE_URL="https://lms-new-back.onrender.com/api/v1/";
+ export const BASE_URL="https://lms-new-backend.onrender.com/api/v1/";
