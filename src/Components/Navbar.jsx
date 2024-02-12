@@ -159,7 +159,7 @@ export default function NavBar(){
          {isLoggedIn === false && (
             <Link to="/login">
               <button className="rounded-[8px] border border-richblack-50 bg-richblack-25 px-[12px] py-[8px] text-richblack-300">
-                Log in
+                Sign in
               </button>
             </Link>
           )}
