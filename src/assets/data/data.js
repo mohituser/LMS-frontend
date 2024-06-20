@@ -42,11 +42,11 @@ export const  NavbarLinks = [
       path: "/",
       roles:["","ADMIN","USER"]
     },
-    {
-        title: "DashBoard",
-        path: "/DashBoard",
-        roles:["ADMIN","USER"]
-      },
+    // {
+    //     title: "DashBoard",
+    //     path: "/DashBoard",
+    //     roles:["ADMIN","USER"]
+    //   },
       {
         title: "Profile",
         path: "/user/profile",
@@ -75,4 +75,5 @@ export const  NavbarLinks = [
   
     },
   ];
- export const BASE_URL="http://localhost:5001/api/v1/";
+//  export const BASE_URL="http://localhost:5001/api/v1/";
+export const BASE_URL="https://lms-new-backend.onrender.com/api/v1/";

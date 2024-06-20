@@ -9,7 +9,7 @@ function HomePage(){
     document.title="Home";
     },[])
     return <HomeLayout>
-    <div className="bg-richblack-800 lg:h-[80vh] md:px-20 py-24 flex  flex-col gap-3 lg:flex-row justify-between items-center">
+    <div className="bg-richblack-800 lg:h-[80vh] min-h-[500px] md:px-20 py-20 flex  flex-col gap-3 lg:flex-row justify-between items-center">
             {/* Section 1 */}
             <div className="relative mt-0  mx-auto flex w-1/2 max-w-maxContent flex-col items-center justify-between gap-8 text-white">
                  {/* Heading */}
@@ -18,7 +18,7 @@ function HomePage(){
         </div>
         {/* paragraaph */}
         <p className="text-center text-lg font-bold text-richblack-300  lg:w-8/12">
-      We have a large library of courses taught by highly skilled and qualified faculties at a very affordable cost.
+      We have a large library of courses taught by highly skilled and qualified professor.
      </p>
      <div className="flex gap-5 flex-col md:flex-row ">
                         <Link to="/courses">

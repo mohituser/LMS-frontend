@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import {useSelector,useDispatch} from "react-redux"
 import { logout } from "../Redux/Slices/AuthSlice";
 import { NavbarLinks } from "../assets/data/data";
+import { BsPersonCircle } from "react-icons/bs";
 export default function NavBar(){
   const [drapDown ,setDrapDown]=useState(false);
   const [leftDrapDown,setLeftDrapDown]=useState(false);
@@ -43,7 +44,7 @@ export default function NavBar(){
      
         <div className="flex w-11/12 m-auto   items-center justify-between">
     {/* <div  onClick={()=>setDrapDown(!drapDown)}> */}
-     <FiMenu size={"32px"} onClick={()=>setDrapDown(!drapDown)} className="text-white md:hidden font-bold m-4"/>
+     <FiMenu size={"32px"} onClick={()=>setDrapDown(!drapDown)} className="text-white md:hidden font-bold mx-4"/>
     {/* </div> */}
      {/* Logo */}
         {/* <Link to="/">
@@ -97,7 +98,7 @@ export default function NavBar(){
             // </Link>
             
             <div onClick={()=>setLeftDrapDown(!leftDrapDown)} className="flex relative justify-center items-center w-[35px]">
-             <img src={user?.avatar?.secure_url} alt="" className="fit" />
+            {user?.avatar?.secure_url ? <img src={user?.avatar?.secure_url} alt="" className="fit rounded-full" /> : <BsPersonCircle size={"35px"} className='  fit  text-white' />}
            
              {leftDrapDown && <div className="absolute flex flex-col p-4 rounded-md justify-center items-center gap-1 top-[6vh] right-0 z-20 bg-white w-[11vw] ">
              <ul className="flex flex-col gap-x-6 ">

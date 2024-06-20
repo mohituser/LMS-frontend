@@ -80,14 +80,15 @@ function EditProfile() {
                 >
                     <h1 className="text-center text-2xl font-semibold">Edit profile</h1>
                     <label className="cursor-pointer" htmlFor="image_uploads">
-                        {data.previewImage ? (
+                        {data?.previewImage ? (
                             <img 
                                 className="w-28 h-28 rounded-full m-auto"
-                                src={data.previewImage}
+                                src={data?.previewImage}
 
                             />
                         ): (
-                            <BsPersonCircle className="w-28 h-28 rounded-full m-auto" />
+                            <BsPersonCircle className="w-28 h-28 rounded-full m-auto " />
+                            // <h1>hi</h1>
                         )}
                     </label>
                     <input 

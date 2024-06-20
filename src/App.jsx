@@ -15,6 +15,7 @@ import Denied from './Pages/Denied'
 import RequireAuth from './Components/Auth/RequireAuth'
 import CreateCourse from './Pages/Course/CreateCourse'
 import CourseDescription from './Pages/Course/CourseDescription'
+import EditCourse from './Pages/Course/editCourse'
 import Profile from './Pages/User/Profile'
 import EditProfile from './Pages/User/EditProfile'
 import Displaylectures from './Pages/Dashboard/DisplayLectures'
@@ -41,13 +42,15 @@ function App() {
 
       <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
           <Route path="/course/create" element={<CreateCourse />} />
-       <Route path="/course/addlecture" element={<AddLecture/>} />
-           {/*   <Route path="/admin/dashboard" element={<AdminDashboard />} /> */}
+           <Route path="/course/addlecture" element={<AddLecture/>} />
+            <Route path="/dashboard" element={<CourseList/>} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]} />}>
           <Route path='/user/profile' element={<Profile />} />
           <Route path='/user/editprofile' element={<EditProfile />} />
+          <Route path='/editcourse' element={<EditCourse/>} />
+             {/* <Route path="/dashboard" element={<CourseList/>} /> */}
           {/* <Route path='/checkout' element={<Checkout />} />
           <Route path='/checkout/success' element={<CheckoutSuccess />} />
           <Route path='/checkout/fail' element={<CheckoutFailure />} />*/}

@@ -36,13 +36,14 @@ function Login() {
 
         // dispatch create account action
         const response = await dispatch(login(loginData));
-        if(response?.payload?.success)
+        if(response?.payload?.success){
             navigate("/");
 
         setLoginData({
             email: "",
             password: "",
         });
+    }
     }
 
     return (
@@ -82,7 +83,7 @@ function Login() {
                     </button>
 
                     <p className="text-center">
-                        Donot hanve an account ? <Link to="/signup" className=' text-blue-200 underline cursor-pointer'> Signup</Link>
+                        Don't hanve an account ? <Link to="/signup" className=' text-blue-200 underline cursor-pointer'> Signup</Link>
                     </p>
 
                 </form>

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import axiosInstance ,{apiConnector} from "../Helpers/axiosInstance";
 // import { isEmail } from "../helpers/regexMatcher";
 import HomeLayout from "../layouts/HomeLayout";
+import { BASE_URL } from "../assets/data/data";
 
 function ContactUs() {
     useEffect(()=>{
@@ -36,17 +37,17 @@ function ContactUs() {
         //     return;
         // }
         try {
-            const BASE_URL="http://localhost:5001/api/v1/";
+            // const BASE_URL="http://localhost:5001/api/v1/user/";
             // const response = axiosInstance.post("/contact", userInput);
-            const response=await apiConnector("POST",BASE_URL+"contact",userInput);
-            // toast.promise(response, {
-            //     loading: "Submitting your query",
-            //     success: "Form submitted successfully",
-            //     error: "Failed to submit the form"
-            // });
-            const responseData =  response;
-            console.log(responseData);
-            if(responseData?.data) {
+            let response= apiConnector("POST",BASE_URL+"user/contact",{...userInput});
+            toast.promise(response, {
+                loading: "Submitting your query",
+                success: "Form submitted successfully",
+                error: "Failed to submit the form"
+            });
+         response = await response;
+            console.log(response?.data);
+            if(response?.data?.success) {
                 setUserInput({
                     email: "",
                     name: "",
@@ -54,7 +55,9 @@ function ContactUs() {
                 })
             }
         } catch(error) {
-            toast.error("operation failed....");
+            // toast.error("operation failed....");
+            toast.error(error.message);
+            
         }
     }
     return (

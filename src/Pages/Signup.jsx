@@ -56,7 +56,7 @@ function Signup() {
 
     async function createNewAccount(event) {
         event.preventDefault();
-        if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.avatar) {
+        if(!signupData.email || !signupData.password || !signupData.fullName ) {
             toast.error("Please fill all the details");
             return;
         }

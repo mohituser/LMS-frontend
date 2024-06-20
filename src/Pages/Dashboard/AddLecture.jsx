@@ -101,8 +101,9 @@ function AddLecture() {
                             name="description"
                             placeholder="enter the description of the lecture"
                             onChange={handleInputChange}
-                            className="bg-transparent px-3 py-1 border resize-none overflow-y-scroll h-36"
+                            className="bg-transparent px-3 py-1 border resize-none overflow-y-auto h-36"
                             value={userInput.description}
+                            
                         />
                         {userInput.videoSrc ? (
                             <video 

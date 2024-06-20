@@ -10,9 +10,9 @@ export default function AboutUs(){
         },[])
     return (
         <HomeLayout>
- <div className="pl-20 pt-20 flex flex-col justify-center text-white bg-richblack-800">
-                <div className="flex flex-col md:flex-row items-center gap-5 mx-10">
-                    <section className="w-1/2 space-y-10">
+ <div className=" pt-10 flex flex-col items-center justify-center text-white bg-richblack-800">
+                <div className="flex flex-col md:flex-row justify-center items-center gap-5 mx-10">
+                    <section className="w-[40%] space-y-10">
                         <h1 className="text-5xl text-yellow-500 font-semibold">
                             Affordable and quality education
                         </h1>
@@ -24,7 +24,7 @@ export default function AboutUs(){
                         </p>
                     </section>
 
-                    <div className="w-1/2">
+                    <div className="w-[30%]">
                         <img
                             id="test1"
                             

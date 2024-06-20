@@ -5,17 +5,19 @@ import axiosInstance, { apiConnector}  from "../../Helpers/axiosInstance";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { BASE_URL } from "../../assets/data/data";
-// import User from "../../../../server/models/user.model";
 const initialState = {
     courseList: []
 }
 
 export const getAllCourses = createAsyncThunk("/course/getAllCourses", async () => {
+    // const BASE_URL="http://localhost:5001/course/";
     // const BASE_URL="http://localhost:5001/api/v1/";
     try {
         // const response = axiosInstance.get("/courses", data);
         console.log("coursesss..........")
         const res=await apiConnector("GET",BASE_URL+"course/");
+        // const res=await apiConnector("GET","api/v1/course/");
+        // const res=await axios("api/v1/course")
         console.log("data2");
         // toast.promise(response, {
         //     loading: 'Wait! fetching all courses',
@@ -31,7 +33,7 @@ export const getAllCourses = createAsyncThunk("/course/getAllCourses", async () 
     }
 });
 
-export const createNewCourse = createAsyncThunk("/course/create", async (data) => {
+export const createNewCourse= createAsyncThunk("/course/create", async (data) => {
     // const BASE_URL="http://localhost:5001/api/v1/";
     console.log("dataaaaaaa",data.token);
     // const PE=useSelector((state)=>state?.auth?.token)
@@ -60,6 +62,35 @@ export const createNewCourse = createAsyncThunk("/course/create", async (data) =
 
     } catch(error) {
         toast.error(error?.response?.data?.message);
+    }
+});
+export const editCourse = createAsyncThunk("/course/edit", async (data) => {
+    // const BASE_URL="http://localhost:5001/api/v1/";
+    console.log("dataaaaaaa",data.inp);
+    // const PE=useSelector((state)=>state?.auth?.token)
+    try {
+
+const inp=data.inp;
+        const response= apiConnector("PUT",BASE_URL+`course/${data.id}`,{...inp},{
+            // 'Content-Type': 'multipart/form-data',
+             Authorization: `Bearer ${data.token}`,
+            
+          },
+        
+        );
+        // const response =axios.post(BASE_URL+"course/",data,{ ['Content-Type']: 'multipart/form-data'  ,withCredentials: true })
+        toast.promise(response, {
+            loading: "Creating new course",
+            success: "Course updated",
+            error: "Failed to create course"
+        });
+
+    
+        return (await response).data
+
+    } catch(error) {
+        toast.error(error?.response?.data?.message);
+        // toast.error(error);
     }
 });
 const courseSlice = createSlice({

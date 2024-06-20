@@ -17,20 +17,18 @@ export const createAccount= createAsyncThunk("/auth/signup",async (data)=>{
         //     body:data,
         //     headers:{'Content-Type': 'multipart/form-data'}
         // });
-        const res=await apiConnector("POST",BASE_URL+"user/register",data,{
+        const res= apiConnector("POST",BASE_URL+"user/register",data,{
             'Content-Type': 'multipart/form-data'
           });
         console.log("data2");
-        // toast.promise(res,{
-        //   loading:"Wait! creating your account",
-        //   success:(data)=>{
-        //     return data?.data?.message;
-        //   },
-        //   error:"failed to create account"
-        // })
-        toast.success("Account created successfully")
+        toast.promise(res,{
+          loading:"Wait! creating your account",
+          success:"Account created successfully",
+          error:"failed to create account"
+        })
+        // toast.success("Account created successfully")
         console.log(res.data);
-        return res.data;
+        return (await res).data;
         
     } catch (error) {
         console.log("data3")
@@ -47,22 +45,23 @@ export const login= createAsyncThunk("/auth/login",async (data)=>{
         //     body:data,
         //     headers:{'Content-Type': 'multipart/form-data'}
         // });
-        const res=await apiConnector("POST",BASE_URL+"user/login",data);
+        const res= apiConnector("POST",BASE_URL+"user/login",data);
+        // const res=await apiConnector("GET",BASE_URL+"user/login");
         console.log("data2");
-        // toast.promise(res,{
-        //   loading:"Wait! creating your account",
-        //   success:(data)=>{
-        //     return data?.data?.message;
-        //   },
-        //   error:"failed to create account"
-        // })
-        toast.success("User loggedin successfully")
-        console.log(res.data);
-        return res.data;
+        toast.promise(res,{
+          loading:"Wait! creating your account",
+          success:"User loggedin successfully",
+          error:"failed to create account"
+        })
+        // toast.success("User loggedin successfully")
+        // console.log(res.data);
+        return (await res).data;
         
     } catch (error) {
         console.log("data3")
-        toast.error(error?.response?.data?.message)
+        // toast.error(error?.response?.data?.message);
+        toast.error("error at login side")
+        return 
     }
 })
 export const logout= createAsyncThunk("/auth/logout",async ()=>{
@@ -74,18 +73,16 @@ export const logout= createAsyncThunk("/auth/logout",async ()=>{
         //     body:data,
         //     headers:{'Content-Type': 'multipart/form-data'}
         // });
-        const res=await apiConnector("GET",BASE_URL+"user/logout");
+        const res= apiConnector("GET",BASE_URL+"user/logout");
         console.log("data2");
-        // toast.promise(res,{
-        //   loading:"Wait! creating your account",
-        //   success:(data)=>{
-        //     return data?.data?.message;
-        //   },
-        //   error:"failed to create account"
-        // })
-        toast.success("User loggedout successfully")
-        console.log(res.data);
-        return res.data;
+        toast.promise(res,{
+          loading:"Wait! creating your account",
+          success:"User loggedout successfully",
+          error:"failed to create account"
+        })
+        // toast.success("User loggedout successfully")
+        // console.log(res.data);
+        return (await res).data;
         
     } catch (error) {
         console.log("data3")
@@ -135,6 +132,7 @@ const authSlice=createSlice({
     extraReducers:(builder)=>{
         builder.
         addCase(createAccount.fulfilled, (state, action) => {
+            if(action?.payload?.user){
             localStorage.setItem("data", JSON.stringify(action?.payload?.user));
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("token",action?.payload?.token);
@@ -142,10 +140,11 @@ const authSlice=createSlice({
             state.isLoggedIn = true;
             state.data = action?.payload?.user;
             state.token = action?.payload?.token;
-            state.role = action?.payload?.user?.role
+            state.role = action?.payload?.user?.role}
         })
         builder.
         addCase(login.fulfilled, (state, action) => {
+            if(action?.payload?.user){
             localStorage.setItem("data", JSON.stringify(action?.payload?.user));
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("token",action?.payload?.token);
@@ -153,7 +152,7 @@ const authSlice=createSlice({
             state.isLoggedIn = true;
             state.data = action?.payload?.user;
             state.token = action?.payload?.token;
-            state.role = action?.payload?.user?.role
+            state.role = action?.payload?.user?.role}
         })
         builder.
         addCase(getUserData.fulfilled, (state, action) => {
