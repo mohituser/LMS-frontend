@@ -15,18 +15,16 @@ export const getAllCourses = createAsyncThunk("/course/getAllCourses", async () 
     try {
         // const response = axiosInstance.get("/courses", data);
         console.log("coursesss..........")
-        const res=await apiConnector("GET",BASE_URL+"course/");
+        const res= apiConnector("GET",BASE_URL+"course/");
         // const res=await apiConnector("GET","api/v1/course/");
         // const res=await axios("api/v1/course")
         console.log("data2");
-        // toast.promise(response, {
-        //     loading: 'Wait! fetching all courses',
-        //     success: (data) => {
-        //         return data?.data?.message;
-        //     },
-        //     error: 'Failed to load courses'
-        // });
-        return (res).data.courses;
+        toast.promise(res, {
+            loading: 'Wait! fetching all courses',
+            success: "fetched",
+            error: 'Failed to load courses'
+        });
+        return (await res).data.courses;
     } catch(error) {
         console.log(error);
         toast.error(error?.response?.data?.message);
