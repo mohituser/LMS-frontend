@@ -130,12 +130,13 @@ export default function NavBar(){
             </div>
         </div>
         {true && 
-      <div className={`absolute flex flex-col justify-between p-3 sm:p-9 ${drapDown ?'left:0 z-20' :"-left-[50vw] -z-1"}  top-[7vh] w-[40vw] h-[80vh] transistion-all bg-white ease-linear  duration-1000`}>
+      <div className={`absolute flex flex-col md:hidden justify-between p-3 sm:p-9 ${drapDown ?'left:0 z-20' :"-left-[50vw] -z-1"}  top-[7vh] w-[40vw] h-[80vh] transistion-all bg-white ease-linear duration-1000`}>
         <div className="absolute right-5 top-2" onClick={()=>setDrapDown(false)}><CiCircleRemove size={"30px"} /></div>
- <nav className="md:block">
+ <nav >
+
           <ul className="flex flex-col gap-3 text-richblack-300">
             {NavbarLinks.map((link, index) => (
-               link.roles.includes(role) && 
+               (link.roles.includes(role) || link.title=='Home' || link.title=='Contact Us' || link.title=='About Us') && 
               <li key={index} >
                   <Link to={link?.path}  className="flex items-center gap-1">
                       {/* {matchRoute(link?.path) ? <>{link.icon1}</> :<>{link.icon2}</>} */}
@@ -149,7 +150,7 @@ export default function NavBar(){
                       {link.title}
                     </p>
                   </Link>
-                
+          
               </li>
             ))}
             

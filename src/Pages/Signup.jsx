@@ -172,6 +172,9 @@ function Signup() {
                     <p className="text-center">
                         Already have an account ? <Link to="/login" className='text-blue-100 underline cursor-pointer'> Login</Link>
                     </p>
+                    <p className="text-center">
+                        Are you guest ? <Link to="/login" className='text-blue-100 underline cursor-pointer'> Login as guest</Link>
+                    </p>
 
                 </form>
             </div>

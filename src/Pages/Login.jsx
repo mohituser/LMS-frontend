@@ -27,15 +27,16 @@ function Login() {
         })
     }
 
-    async function onLogin(event) {
+    async function onLogin(event,obj) {
         event.preventDefault();
-        if(!loginData.email || !loginData.password) {
+        setLoginData(obj);
+        if(!obj.email || !obj.password) {
             toast.error("Please fill all the details");
             return;
         }
 
         // dispatch create account action
-        const response = await dispatch(login(loginData));
+        const response = await dispatch(login(obj));
         if(response?.payload?.success){
             navigate("/");
 
@@ -78,10 +79,18 @@ function Login() {
                         />
                     </div>
 
-                    <button type="submit" className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer'>
+                    <button onClick={(e)=>onLogin(e,loginData)} className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer'>
                        Login
                     </button>
-
+                    <p className="text-center">
+                        Login as Guest
+                    </p>
+                    <button onClick={(e)=>onLogin(e,{email:"user@gmail.com",password:"1234567"})} className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer'>
+                       Login as student
+                    </button>
+                    <button onClick={(e)=>onLogin(e,{email:"mohit7089237060@gmail.com",password:"1234567"})} className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer'>
+                       Login as admin
+                    </button>
                     <p className="text-center">
                         Don't hanve an account ? <Link to="/signup" className=' text-blue-200 underline cursor-pointer'> Signup</Link>
                     </p>
